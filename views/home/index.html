@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/deno-logo.svg" />
+    <link rel="stylesheet" href="/home/css/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Deno Todo App</title>
+  </head>
+  <body>
+    <form action="" method="post" class="add-form">
+      <input
+        type="text"
+        name=""
+        id="new-title"
+        placeholder="What will you do today?"
+      />
+      <input class="add-btn" type="submit" value="ADD" />
+    </form>
+    <div class="main-devider"></div>
+    <ul class="todo-list">
+      <li class="todo-item">
+        <div class="title-checkbox">
+          <input type="checkbox" name="is-completed" id="is-completed" />
+          <p class="todo-title">Todo item 1</p>
+        </div>
+        <img src="/home/img/trash.svg" class="delete-icon" alt="delete" />
+      </li>
+      <div class="item-devider"></div>
+      <li class="todo-item">
+        <div class="title-checkbox">
+          <input type="checkbox" name="is-completed" id="is-completed" />
+          <p class="todo-title">Todo item 2</p>
+        </div>
+        <img src="/home/img/trash.svg" class="delete-icon" alt="delete" />
+      </li>
+      <div class="item-devider"></div>
+      <li class="todo-item">
+        <div class="title-checkbox">
+          <input type="checkbox" name="is-completed" id="is-completed" />
+          <p class="todo-title">Todo item 3</p>
+        </div>
+        <img src="/home/img/trash.svg" class="delete-icon" alt="delete" />
+      </li>
+    </ul>
+    <div class="main-devider"></div>
+    <script src="/home/js/main.js"></script>
+  </body>
+</html>
