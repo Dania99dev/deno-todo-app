@@ -4,7 +4,7 @@
   margin: 0;
 }
 body {
-  background-color: rgb(145, 91, 245);
+  background-color: #364342;
   font-family: "Mukta", sans-serif;
   display: flex;
   flex-direction: column;
@@ -38,19 +38,18 @@ body {
 .add-form .add-btn {
   width: 170px;
   border: none;
-  background-color: rgb(56, 149, 255);
+  background-color: #d19544;
   font-family: "Mukta", sans-serif;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.2s;
 }
 .add-form .add-btn:focus {
   outline: none;
 }
 .add-form .add-btn:hover {
-  background-color: rgb(37, 139, 255);
-  color: white;
-  transition-duration: 0.2s;
+  background-color: #c0873d;
 }
 .todo-list {
   background-color: white;
