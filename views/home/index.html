@@ -12,10 +12,10 @@
     <title>Deno Todo App</title>
   </head>
   <body>
-    <form action="" method="post" class="add-form">
+    <form action="/add-todo" method="post" class="add-form">
       <input
         type="text"
-        name=""
+        name="title"
         id="new-title"
         placeholder="What will you do today?"
       />
@@ -26,7 +26,7 @@
       {% for todo in todos %}
       <li class="todo-item">
         <div class="title-checkbox">
-          {% if todo.is_completed%}
+          {% if todo.is_completed %}
           <input
             type="checkbox"
             name="is-completed"
