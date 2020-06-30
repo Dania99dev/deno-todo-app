@@ -75,6 +75,9 @@ body {
 #is-completed {
   cursor: pointer;
 }
+.checked {
+  text-decoration: line-through;
+}
 .todo-title {
   margin-left: 6px;
 }
