@@ -23,29 +23,27 @@
     </form>
     <div class="main-devider"></div>
     <ul class="todo-list">
+      {% for todo in todos %}
       <li class="todo-item">
         <div class="title-checkbox">
+          {% if todo.is_completed%}
+          <input
+            type="checkbox"
+            name="is-completed"
+            id="is-completed"
+            checked
+          />
+          <p class="todo-title checked">{{ todo.title }}</p>
+          {% else %}
           <input type="checkbox" name="is-completed" id="is-completed" />
-          <p class="todo-title">Todo item 1</p>
+          <p class="todo-title">{{ todo.title }}</p>
+          {% endif %}
         </div>
         <img src="/home/img/trash.svg" class="delete-icon" alt="delete" />
       </li>
+      {% if loop.length != loop.index %}
       <div class="item-devider"></div>
-      <li class="todo-item">
-        <div class="title-checkbox">
-          <input type="checkbox" name="is-completed" id="is-completed" />
-          <p class="todo-title">Todo item 2</p>
-        </div>
-        <img src="/home/img/trash.svg" class="delete-icon" alt="delete" />
-      </li>
-      <div class="item-devider"></div>
-      <li class="todo-item">
-        <div class="title-checkbox">
-          <input type="checkbox" name="is-completed" id="is-completed" />
-          <p class="todo-title">Todo item 3</p>
-        </div>
-        <img src="/home/img/trash.svg" class="delete-icon" alt="delete" />
-      </li>
+      {% endif %} {% endfor %}
     </ul>
     <div class="main-devider"></div>
     <script src="/home/js/main.js"></script>
