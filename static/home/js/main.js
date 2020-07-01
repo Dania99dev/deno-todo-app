@@ -10,38 +10,8 @@ addBtn.addEventListener("click", (e) => {
   xhr.onload = () => {
     if (xhr.status == 201) {
       const response = JSON.parse(xhr.response);
-      todoList.innerHTML = "";
-      response.newList.forEach((element, i) => {
-        if (element.is_completed) {
-          todoList.innerHTML += `
-                <li class="todo-item">
-                <input type="hidden" class="todo-id" value="${element.id}" />
-                    <div class="title-checkbox">
-                    <input type="checkbox" class="is-completed" checked />
-                    <p class="todo-title checked">${element.title}</p>
-                    </div>
-                    <img src="/home/img/trash.svg" class="delete-icon" alt="delete" />
-                </li>
-            `;
-        } else {
-          todoList.innerHTML += `
-                <li class="todo-item">
-                <input type="hidden" class="todo-id" value="${element.id}" />
-                    <div class="title-checkbox">
-                    <input type="checkbox" class="is-completed" />
-                    <p class="todo-title">${element.title}</p>
-                    </div>
-                    <img src="/home/img/trash.svg" class="delete-icon" alt="delete" />
-                </li>
-            `;
-        }
-        console.log(response.newList.length);
-
-        if (i != response.newList.length - 1) {
-          todoList.innerHTML += `<div class="item-devider"></div>`;
-        }
-      });
-      console.log(response);
+      const newList = response.newList;
+      listUpdater(newList, todoList);
     } else {
       console.log(xhr.responseText);
     }
@@ -50,3 +20,37 @@ addBtn.addEventListener("click", (e) => {
 
   newTitle.value = "";
 });
+
+// Todo list updater function
+
+function listUpdater(newList, oldList) {
+  oldList.innerHTML = "";
+  newList.forEach((el, i) => {
+    if (el.is_completed) {
+      oldList.innerHTML += `
+            <li class="todo-item">
+            <input type="hidden" class="todo-id" value="${el.id}" />
+                <div class="title-checkbox">
+                <input type="checkbox" class="is-completed" checked />
+                <p class="todo-title checked">${el.title}</p>
+                </div>
+                <img src="/home/img/trash.svg" class="delete-icon" alt="delete" />
+            </li>
+        `;
+    } else {
+      oldList.innerHTML += `
+            <li class="todo-item">
+            <input type="hidden" class="todo-id" value="${el.id}" />
+                <div class="title-checkbox">
+                <input type="checkbox" class="is-completed" />
+                <p class="todo-title">${el.title}</p>
+                </div>
+                <img src="/home/img/trash.svg" class="delete-icon" alt="delete" />
+            </li>
+        `;
+    }
+    if (i != newList.length - 1) {
+      todoList.innerHTML += `<div class="item-devider"></div>`;
+    }
+  });
+}
