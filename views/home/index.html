@@ -6,36 +6,27 @@
     <link rel="icon" href="/deno-logo.svg" />
     <link rel="stylesheet" href="/home/css/main.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;800&display=swap"
       rel="stylesheet"
     />
     <title>Deno Todo App</title>
   </head>
   <body>
-    <form action="/add-todo" method="post" class="add-form">
-      <input
-        type="text"
-        name="title"
-        id="new-title"
-        placeholder="What will you do today?"
-      />
-      <input class="add-btn" type="submit" value="ADD" />
-    </form>
+    <div class="add-form">
+      <input type="text" id="new-title" placeholder="What will you do today?" />
+      <button class="add-btn">ADD</button>
+    </div>
     <div class="main-devider"></div>
     <ul class="todo-list">
       {% for todo in todos %}
       <li class="todo-item">
+        <input type="hidden" class="todo-id" value="{{ todo.id }}" />
         <div class="title-checkbox">
           {% if todo.is_completed %}
-          <input
-            type="checkbox"
-            name="is-completed"
-            id="is-completed"
-            checked
-          />
+          <input type="checkbox" class="is-completed" checked />
           <p class="todo-title checked">{{ todo.title }}</p>
           {% else %}
-          <input type="checkbox" name="is-completed" id="is-completed" />
+          <input type="checkbox" class="is-completed" />
           <p class="todo-title">{{ todo.title }}</p>
           {% endif %}
         </div>
