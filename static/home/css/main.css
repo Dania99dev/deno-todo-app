@@ -3,6 +3,9 @@
   padding: 0;
   margin: 0;
 }
+input {
+  font-family: "Mukta", sans-serif;
+}
 body {
   background-color: #364342;
   font-family: "Mukta", sans-serif;
@@ -23,19 +26,19 @@ body {
   height: 40px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
-.add-form #new-title {
+#new-title {
   width: 100%;
   border: none;
   padding: 0 10px;
   font-size: 17px;
 }
-.add-form #new-title:focus {
+#new-title:focus {
   outline: none;
 }
-.add-form #new-title::placeholder {
+#new-title::placeholder {
   color: rgba(0, 0, 0, 0.4);
 }
-.add-form .add-btn {
+.add-btn {
   width: 170px;
   border: none;
   background-color: #d19544;
@@ -45,10 +48,10 @@ body {
   cursor: pointer;
   transition: background-color 0.2s;
 }
-.add-form .add-btn:focus {
+.add-btn:focus {
   outline: none;
 }
-.add-form .add-btn:hover {
+.add-btn:hover {
   background-color: #c0873d;
 }
 .todo-list {
@@ -71,7 +74,7 @@ body {
   display: flex;
   align-items: center;
 }
-#is-completed {
+.is-completed {
   cursor: pointer;
 }
 .checked {
@@ -84,7 +87,7 @@ body {
   width: 20px;
   cursor: pointer;
   opacity: 0.6;
-  transition: opacity 0.2s;
+  transition: opacity 0.1s;
 }
 .delete-icon:hover {
   opacity: 1;
@@ -92,4 +95,13 @@ body {
 .item-devider {
   width: 90%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+@media only screen and (min-width: 800px) {
+  .add-form {
+    width: 60%;
+  }
+  .todo-list {
+    width: 60%;
+  }
 }
