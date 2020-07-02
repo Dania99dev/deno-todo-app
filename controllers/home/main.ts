@@ -52,3 +52,15 @@ export async function updateTodo(ctx: any) {
     newList: result.rowsOfObjects(),
   };
 }
+
+export async function deleteTodo(ctx: any) {
+  const body = await ctx.request.body();
+  const id = body.value.get("id");
+  const query = await client.query("DELETE FROM todos WHERE id=$1", id);
+  const result = await client.query("SELECT * FROM todos ORDER BY id ASC");
+  ctx.response.status = 200;
+  ctx.response.body = {
+    success: true,
+    newList: result.rowsOfObjects(),
+  };
+}

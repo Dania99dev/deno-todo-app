@@ -48,6 +48,22 @@ function funcUpdater(newList) {
       };
       xhr.send(`is_completed=${newVal}&id=${id}`);
     });
+
+    deleteBtn.addEventListener("click", () => {
+      const xhr = new XMLHttpRequest();
+      xhr.open("DELETE", "/", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onload = () => {
+        if (xhr.status == 200) {
+          const response = JSON.parse(xhr.response);
+          const newList = response.newList;
+          listUpdater(newList, todoList);
+        } else {
+          console.log(xhr.responseText);
+        }
+      };
+      xhr.send(`id=${id}`);
+    });
   });
 }
 
