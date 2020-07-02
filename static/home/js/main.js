@@ -13,10 +13,35 @@ form.addEventListener("submit", (e) => {
   xhr.onload = () => {
     if (xhr.status == 201) {
       const response = JSON.parse(xhr.response);
+      const msgBox = document.querySelector(".message");
+      msgBox.classList.remove("fail");
+      msgBox.classList.add("success");
+      msgBox.innerHTML = `<p>Item added successfully</p>`;
+      msgBox.style.display = "block";
+      msgBox.style.opacity = "1";
       const newList = response.newList;
+      setTimeout(function () {
+        msgBox.style.opacity = "0";
+        setTimeout(function () {
+          msgBox.style.display = "none";
+        }, 200);
+      }, 1200);
       listUpdater(newList, todoList);
     } else {
-      console.log(xhr.responseText);
+      const response = JSON.parse(xhr.response);
+      const errMsg = response.message;
+      const msgBox = document.querySelector(".message");
+      msgBox.classList.remove("success");
+      msgBox.classList.add("fail");
+      msgBox.innerHTML = `<p>${errMsg}</p>`;
+      msgBox.style.display = "block";
+      msgBox.style.opacity = "1";
+      setTimeout(function () {
+        msgBox.style.opacity = "0";
+        setTimeout(function () {
+          msgBox.style.display = "none";
+        }, 200);
+      }, 1200);
     }
   };
   xhr.send(`title=${newTitle.value}`);
