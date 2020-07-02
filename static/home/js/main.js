@@ -1,9 +1,10 @@
-const addBtn = document.querySelector(".add-btn");
+const form = document.querySelector(".add-form");
 const todoList = document.querySelector(".todo-list");
 funcUpdater(todoList);
 
 // Add new todo
-addBtn.addEventListener("click", (e) => {
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
   let newTitle = document.querySelector("#new-title");
 
   const xhr = new XMLHttpRequest();
