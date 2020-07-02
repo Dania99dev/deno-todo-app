@@ -3,7 +3,7 @@ import client from "../../models/config.ts";
 export async function getMainView(ctx: any) {
   await client.connect();
   const todos = await client.query(
-    "SELECT * FROM public.todos ORDER BY id ASC"
+    "SELECT * FROM public.todos ORDER BY id ASC",
   );
   const context = {
     todos: todos.rowsOfObjects(),
@@ -16,10 +16,10 @@ export async function addTodo(ctx: any) {
   const newTodo = body.value.get("title");
 
   if (newTodo != "") {
-    const add = await client.query(
+    const query = await client.query(
       "INSERT INTO todos(title, is_completed) VALUES($1, $2)",
       newTodo,
-      false
+      false,
     );
     const result = await client.query("SELECT * FROM todos ORDER BY id ASC");
     ctx.response.status = 201;
@@ -34,4 +34,21 @@ export async function addTodo(ctx: any) {
       message: "Title should be provided",
     };
   }
+}
+
+export async function updateTodo(ctx: any) {
+  const body = await ctx.request.body();
+  const isCompleted = body.value.get("is_completed");
+  const id = body.value.get("id");
+  const query = await client.query(
+    "UPDATE todos SET is_completed=$1 WHERE id=$2",
+    isCompleted,
+    id,
+  );
+  const result = await client.query("SELECT * FROM todos ORDER BY id ASC");
+  ctx.response.status = 200;
+  ctx.response.body = {
+    success: true,
+    newList: result.rowsOfObjects(),
+  };
 }

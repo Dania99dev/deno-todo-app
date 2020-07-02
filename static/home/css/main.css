@@ -88,6 +88,7 @@ body {
   cursor: pointer;
   opacity: 0.6;
   transition: opacity 0.1s;
+  margin-left: 6px;
 }
 .delete-icon:hover {
   opacity: 1;
@@ -97,7 +98,7 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 750px) {
   .add-form {
     width: 60%;
   }
