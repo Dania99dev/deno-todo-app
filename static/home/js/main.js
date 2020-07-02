@@ -1,6 +1,8 @@
 const addBtn = document.querySelector(".add-btn");
 const todoList = document.querySelector(".todo-list");
+funcUpdater(todoList);
 
+// Add new todo
 addBtn.addEventListener("click", (e) => {
   let newTitle = document.querySelector("#new-title");
 
@@ -21,11 +23,39 @@ addBtn.addEventListener("click", (e) => {
   newTitle.value = "";
 });
 
-// Todo list updater function
+// Updades all functions when the list updates
+function funcUpdater(newList) {
+  const todoItem = newList.querySelectorAll(".todo-item");
+  todoItem.forEach((element) => {
+    const checkbox = element.querySelector(".is-completed");
+    const title = element.querySelector(".todo-title");
+    const deleteBtn = element.querySelector(".delete-icon");
+    const id = element.querySelector(".todo-id").value;
 
-function listUpdater(newList, oldList) {
+    checkbox.addEventListener("change", () => {
+      const newVal = checkbox.checked;
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "/update-todo", true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xhr.onload = () => {
+        if (xhr.status == 200) {
+          const response = JSON.parse(xhr.response);
+          const newList = response.newList;
+          listUpdater(newList, todoList);
+        } else {
+          console.log(xhr.responseText);
+        }
+      };
+      xhr.send(`is_completed=${newVal}&id=${id}`);
+    });
+  });
+}
+
+// Todo list updater
+
+function listUpdater(newArray, oldList) {
   oldList.innerHTML = "";
-  newList.forEach((el, i) => {
+  newArray.forEach((el, i) => {
     if (el.is_completed) {
       oldList.innerHTML += `
             <li class="todo-item">
@@ -49,8 +79,10 @@ function listUpdater(newList, oldList) {
             </li>
         `;
     }
-    if (i != newList.length - 1) {
-      todoList.innerHTML += `<div class="item-devider"></div>`;
+    if (i != newArray.length - 1) {
+      oldList.innerHTML += `<div class="item-devider"></div>`;
     }
   });
+  const newList = oldList;
+  funcUpdater(newList);
 }
