@@ -7,7 +7,7 @@ addBtn.addEventListener("click", (e) => {
   let newTitle = document.querySelector("#new-title");
 
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "/add-todo", true);
+  xhr.open("POST", "/", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.onload = () => {
     if (xhr.status == 201) {
@@ -35,7 +35,7 @@ function funcUpdater(newList) {
     checkbox.addEventListener("change", () => {
       const newVal = checkbox.checked;
       const xhr = new XMLHttpRequest();
-      xhr.open("POST", "/update-todo", true);
+      xhr.open("PUT", "/", true);
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       xhr.onload = () => {
         if (xhr.status == 200) {
